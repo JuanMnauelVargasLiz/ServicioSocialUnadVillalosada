@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2 class="my-4">Lista de Usuarios</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+			<th>Cedula</th>
+			<th>Telefono</th>
+			<th>Email</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.apellido}"></td>
+			<td th:text="${user.cedula}"></td>
+            <td th:text="${user.telefono}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <a class="btn btn-primary btn-sm" th:href="@{/edit/{id}(id=${user.id})}">Editar</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/delete/{id}(id=${user.id})}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="/newUser">Agregar Usuario</a>
+</div>
+
+<!-- Bootstrap JS Bundle (incluye Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
